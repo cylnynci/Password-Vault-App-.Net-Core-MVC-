@@ -1,0 +1,60 @@
+﻿@model IEnumerable<EntityLayer.Concrete.Site>
+@{
+
+
+    //Layout = "~/Views/Shared/_UILayout.cshtml";
+
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        @using (Html.BeginForm("AccountList", "Site", FormMethod.Get))
+        {
+            <h2>
+                Sites and Details
+            </h2>
+            <a href="@Url.Action("AddSite","Site")"><input class="navbar-brand" type="button" value="Add Site" /></a>
+
+            @*<div class="form-group form-button">
+                    <input type="submit" href="@Url.Action("LogOut", "Home")" name="signout" id="signout" class="form-submit" value="Log out" />
+                </div>*@
+
+
+    <table class="table table-hover">
+        <thead>
+
+            <tr>
+                <th>Site Name</th>
+                <th>Site Address</th>
+                <th>Delete</th>
+                <th>Update</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var site in Model)
+            {
+                <tr>
+                    <td style="height: 150px;">@site.SiteName</td>
+                    <td style="height: 150px; word-break: break-word;">@site.SiteAddress</td>
+                    <td style="height: 150px;"><a href="@Url.Action("DeleteSite", "Site")?SiteId=@site.SiteId" class="btn btn-danger">Delete</a></td>
+                    <td style="height: 150px;"><a href="@Url.Action("GetSite", "Site")?SiteId=@site.SiteId" class="btn btn-success">Update</a></td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+        }
+    </div>
+
+</body>
+</html>

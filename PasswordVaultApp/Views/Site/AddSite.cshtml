@@ -1,0 +1,81 @@
+﻿@*@using Microsoft.AspNetCore.Http;
+    @{
+        ViewData["Title"] = "Home Page";
+        string username = Context.Session.Get("username");
+    }*@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <br />
+        <h2>Add Site</h2>
+        <button name="btnGonder" onclick="GetInputInformation()" class="btn btn-default" style="float:right;">Get Input Information</button><br />
+        @using (Html.BeginForm("AddSite", "Site", FormMethod.Post))
+        {
+            @Html.ValidationSummary()
+            <div class="form-group">
+                <label for="siteName">Site Name</label>
+                <input type="siteName" class="form-control" id="siteName" placeholder="Site Name" name="siteName" required>
+            </div>
+            <div class="form-group">
+                <label for="siteAddress">Site Address</label>
+                <input type="siteAddress" class="form-control" id="siteAddress" placeholder="Site Address" name="siteAddress" required>
+            </div>
+            <div class="form-group">
+                <label for="userNameId">User Name Id</label>
+                <input type="userNameId" id="txtUserNameId" class="form-control" id="userNameId" placeholder="User Name Id" name="userNameId" >
+            </div>
+            <div class="form-group">
+                <label for="passwordId">Password Id</label>
+                <input type="passwordId" id="txtPasswordId" class="form-control" id="passwordId" placeholder="Password Id" name="passwordId" >
+            </div>
+            <button type="submit" class="btn btn-default" onclick="window.location.href = " @Url.Action("SiteList", "Site") ";">Add</button><br /><br />
+
+            <a href="@Url.Action("SiteList","Site")"><input class="navbar-brand" type="button" value="Go to Site List" /></a>
+        }
+
+
+    </div>
+
+</body>
+            
+    <script type="text/javascript">
+
+                    function GetInputInformation() {
+                    var siteAddress = document.getElementById("siteAddress").value;
+
+                        $.ajax({
+                            url: '@Url.Action("GetInputInformation", "Site")',
+                            type: 'POST',
+                            dataType: 'json',
+                            data: "str=" + siteAddress,
+                            success: function (model) {
+                                $("#txtUserNameId").val(model[1]);
+                                $("#txtPasswordId").val(model[0]);
+
+                                if ($("#txtUserNameId").val() == "" || $("#txtPasswordId").val() == "")
+                                {
+                                    alert("Bir sorun oluştu!!!\n Lütfen  " + siteAddress + "  adresine giderek orada sağ tıklayıp inceleme ekranında yer alan kullanıcı adı ve şifre input tagleri içerisinde bulunan id değerlerini alınız ve aşağıda yer alan inputa giriniz!! ");
+                                }
+                        }
+                           
+                    });
+
+
+                    
+                    }
+                    
+
+    </script>
+      
+</html>

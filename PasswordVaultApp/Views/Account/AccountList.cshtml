@@ -1,0 +1,88 @@
+﻿@model IEnumerable<EntityLayer.Concrete.Account>
+@{
+
+//Layout = "~/Views/Shared/_UILayout.cshtml";
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.css" />
+    <script src="~/colorlib-regform-7/vendor/jquery/jquery-ui.min.js"></script>
+    <script src="~/packages/selenium.webdriver/4.2.0"></script>
+    <script src="~/packages/selenium.webdriver.chromedriver/102.0.5005.6102"></script>
+</head>
+<body>
+
+    <td class="container">
+        @using (Html.BeginForm("AccountList", "Account", FormMethod.Get))
+        {
+            <h2>
+                Accounts and Details
+            </h2>
+            <a href="@Url.Action("AddAccount", "Account")"><input class="navbar-brand" type="button" value="Add Account" /></a>
+            <table class="table table-hover">
+                <thead>
+
+                    <tr>
+                        <th>Site Name</th>
+                        <th>User Name</th>
+                        <th>Password</th>
+                        <th>Delete</th>
+                        <th>Update</th>
+                        <th>Go</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var account in Model)
+                    {
+                    <tr>
+                        <td>@account.Site.SiteName</td>
+                        <td>@account.SiteUserName</td>
+                        <td> <input type="password" id="@account.AccountId" name="@account.AccountId" value="@account.SitePassword"><i class="circular eye link icon" onclick="HideShowPassword(@account.AccountId)"></i></td>
+                        <td><a href="@Url.Action("DeleteAccount", "Account")?AccountId=@account.AccountId" class="btn btn-danger">Delete</a></td>
+                        <td><a href="@Url.Action("GetAccount", "Account")?AccountId=@account.AccountId" class="btn btn-success">Update</a></td>
+                        <td><a href="@Url.Action("GetSessionInformation", "Account",FormMethod.Post)?AccountId=@account.AccountId" class="btn btn-primary">Go To The Site</a></td>
+                        @*<td><a class="btn btn-primary" onclick="GetSessionInformation(@account.AccountId)">Go To The Site</a></td>*@
+
+                        @*<script>
+                                $(document).ready(GetSessionInformation(@account.AccountId) {
+
+                                    $.getJSON("@account.Site.SiteAddress",
+
+                                      var username = @account.SiteUserName;
+                                      var password=@account.SitePassword;
+                                     );
+                                })
+                        </script>*@
+
+                    </tr>
+
+                    }
+                </tbody>
+            </table>
+        }
+        </div>
+
+</body>
+<script>
+    function HideShowPassword(id) {
+        var element = document.getElementById(id);
+        element.type = (element.type == 'password' ? 'text' : 'password');
+    }
+            //function GetSessionInformation(id) {
+            //  var m = document.getElementById(id);
+            //  <div class="input-container touched pristine required"><input id="emailOrPhone" tabindex="1" autofocus="autofocus" type="text" name="emailOrPhone" class="form-input touched pristine required">Html.TextBoxFor(m => m.SiteUserName, new {class = "form-control"})</div>
+            //  <div class="input-container"><input tabindex="2" name="password" id="password" type="password" class="form-input touched pristine required"> <!----> <button type="button" class="btn-togglePassword color-grey4"><i class="icon icon-open-eye">Html.TextBoxFor(m => m.SitePassword, new {class = "form-control"})</i></button></div>
+            //}
+</script>
+
+
+</html>

@@ -1,0 +1,46 @@
+﻿@model PasswordVaultApp.Models.Account
+@*@using Microsoft.AspNetCore.Http;
+@{ 
+    ViewData["Title"] = "Home Page";
+    string username = Context.Session.Get("username");
+}*@ 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <br />
+        <h2>Add Account</h2><br />
+        @using (Html.BeginForm("AddAccount", "Account", FormMethod.Post))
+        {
+            @Html.ValidationSummary()
+            <div class="form-group">
+                <label for="siteName">
+                    Select Site
+                </label>
+                @Html.DropDownListFor(m=>m.SiteId, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="userName">User Name</label>
+                <input type="userName" class="form-control" id="siteUserName" placeholder="User Name" name="siteUserName" required>
+            </div>
+            <div class="form-group">
+                <label for="pwd">Password</label>
+                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="sitePassword" required>
+
+            </div>
+            <button type="submit" class="btn btn-default" onclick="window.location.href = " @Url.Action("AccountList", "Account") ";">Add</button><br /><br /><br />
+            <a href="@Url.Action("AccountList","Account")"><input class="navbar-brand" type="button" value="Go to Account List" /></a>
+        }
+    </div>
+</body>
+</html>

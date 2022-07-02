@@ -1,0 +1,44 @@
+﻿@model EntityLayer.Concrete.Account
+@{
+    //ViewBag.Title = "GetAccount";
+    //Layout = "~/Views/Shared/_UILayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Update Account</h2><br/>
+        @using (Html.BeginForm("UpdateAccount", "Account", FormMethod.Post))
+        {
+            <div class="form-group">
+                @Html.LabelFor(m => m.AccountId)
+                @Html.TextBoxFor(m => m.AccountId, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.SiteId)
+                @Html.DropDownListFor(m => m.SiteId, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.SiteUserName)
+                @Html.TextBoxFor(m => m.SiteUserName, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.SitePassword)
+                @Html.TextBoxFor(m => m.SitePassword, new { @class = "form-control" })
+            </div>
+            <button type="submit" class="btn btn-default" onclick="window.location.href = " @Url.Action("AccountList", "Account") ";">Update</button>
+        }
+    </div>
+
+</body>
+</html>
