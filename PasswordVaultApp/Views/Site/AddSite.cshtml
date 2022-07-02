@@ -51,31 +51,28 @@
             
     <script type="text/javascript">
 
-                    function GetInputInformation() {
-                    var siteAddress = document.getElementById("siteAddress").value;
+             function GetInputInformation() {
+                  var siteAddress = document.getElementById("siteAddress").value;
 
-                        $.ajax({
-                            url: '@Url.Action("GetInputInformation", "Site")',
-                            type: 'POST',
-                            dataType: 'json',
-                            data: "str=" + siteAddress,
-                            success: function (model) {
-                                $("#txtUserNameId").val(model[1]);
-                                $("#txtPasswordId").val(model[0]);
+                  $.ajax({
+                        url: '@Url.Action("GetInputInformation", "Site")',
+                        type: 'POST',
+                        dataType: 'json',
+                        data: "str=" + siteAddress,
+                        success: function (model) {
+                            $("#txtUserNameId").val(model[1]);
+                            $("#txtPasswordId").val(model[0]);
 
-                                if ($("#txtUserNameId").val() == "" || $("#txtPasswordId").val() == "")
-                                {
-                                    alert("Bir sorun oluştu!!!\n Lütfen  " + siteAddress + "  adresine giderek orada sağ tıklayıp inceleme ekranında yer alan kullanıcı adı ve şifre input tagleri içerisinde bulunan id değerlerini alınız ve aşağıda yer alan inputa giriniz!! ");
-                                }
+                            if ($("#txtUserNameId").val() == "" || $("#txtPasswordId").val() == "")
+                            {
+                               alert("Bir sorun oluştu!!!\n Lütfen  " + siteAddress + "  adresine giderek orada sağ tıklayıp inceleme ekranında yer alan kullanıcı adı ve şifre input tagleri içerisinde bulunan id değerlerini alınız ve aşağıda yer alan inputa giriniz!! ");
+                            }
                         }
                            
-                    });
+                 });
 
-
+              }
                     
-                    }
-                    
-
     </script>
       
 </html>
