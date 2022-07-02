@@ -19,14 +19,6 @@ namespace BusinessLayer.Concrete
             data.AddAccount(oAccount);
             return oAccount;
         }
-
-     
-
-     
-       
-    
-     
-
-       
+      
     }
 }
