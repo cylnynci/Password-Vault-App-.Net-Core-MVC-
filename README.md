@@ -1,5 +1,8 @@
 # Password-Vault-App-.Net-Core-MVC-
 
+The password vault application is an application that contains the username and password of the user's accounts on various platforms.
+The user can add a new account and when he/she goes directly to the login page of the current account, the login information of the account is filled automatically.
+
 ![Ekran Görüntüsü-1](https://user-images.githubusercontent.com/84045109/177011502-aa459dd9-100e-4486-93b4-461d12281348.png)
 ![Ekran Görüntüsü-2](https://user-images.githubusercontent.com/84045109/177011507-e54e7cd9-1196-42a3-8e24-778d1794c9df.png)
 ![Ekran Görüntüsü-3](https://user-images.githubusercontent.com/84045109/177011515-cc25275a-7ba6-4571-a512-2b99fb3f097e.png)
