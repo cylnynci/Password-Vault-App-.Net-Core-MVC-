@@ -73,45 +73,7 @@ namespace PasswordVaultApp.Controllers
             HttpContext.Session.Clear();
             return Redirect("Index");
         }
-
-        //public IActionResult SignUp()
-        //{
-        //    if (HttpContext.Session.GetInt32("id").HasValue)
-        //    {
-        //        return Redirect("Account/AddAccount");
-        //    }
-        //    return View();
-        //}
-
-        //public async ViewResult Index(Login login)
-        //{
-
-        //    if (LoginUser(login.Username, login.Password))
-        //    {
-        //        var claims = new List<Claim>
-        //    {
-        //        new Claim(ClaimTypes.Name, login.Username)
-        //    };
-
-        //        var userIdentity = new ClaimsIdentity(claims, "login");
-
-        //        ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
-        //        await HttpContext.SignInAsync(principal);
-
-        //        //Just redirect to our index after logging in. 
-        //        return View("AddAccount");
-        //    }
-        //    return View("AddAccount");
-        //}
-
-        //public async Task<IActionResult> LogOut()
-        //{
-        //    await HttpContext.SignOutAsync();
-
-        //    return RedirectToAction("Index");
-        //}
-
-
+     
         [HttpGet]
         public ViewResult AddUser()
         {
